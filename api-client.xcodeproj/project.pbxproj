@@ -7,12 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A321C8BB206A5FE200BE4BD4 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A321C8BA206A5FE200BE4BD4 /* AuthService.swift */; };
+		A321C8BD206A75C900BE4BD4 /* FoodTruckCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A321C8BC206A75C900BE4BD4 /* FoodTruckCell.swift */; };
+		A334E1A3206FEE5500E0A0CA /* LogInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A334E1A1206FEE5500E0A0CA /* LogInVC.swift */; };
+		A334E1A4206FEE5500E0A0CA /* LogInVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A334E1A2206FEE5500E0A0CA /* LogInVC.xib */; };
+		A360B2DD205C010A003C5858 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A360B2DC205C010A003C5858 /* DataService.swift */; };
+		A360B2DF205C02BC003C5858 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A360B2DE205C02BC003C5858 /* Constants.swift */; };
 		A39420872045E62600F045C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39420862045E62600F045C9 /* AppDelegate.swift */; };
-		A39420892045E62600F045C9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39420882045E62600F045C9 /* ViewController.swift */; };
+		A39420892045E62600F045C9 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39420882045E62600F045C9 /* MainVC.swift */; };
 		A394208C2045E62600F045C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A394208A2045E62600F045C9 /* Main.storyboard */; };
 		A394208E2045E62600F045C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A394208D2045E62600F045C9 /* Assets.xcassets */; };
 		A39420912045E62600F045C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A394208F2045E62600F045C9 /* LaunchScreen.storyboard */; };
 		A394209C2045E62600F045C9 /* api_clientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A394209B2045E62600F045C9 /* api_clientTests.swift */; };
+		A39420AC2045E7A300F045C9 /* FoodTruck.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39420AB2045E7A300F045C9 /* FoodTruck.swift */; };
+		A39420AE2045ED9E00F045C9 /* FoodTruckReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39420AD2045ED9E00F045C9 /* FoodTruckReview.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,9 +34,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A321C8BA206A5FE200BE4BD4 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		A321C8BC206A75C900BE4BD4 /* FoodTruckCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTruckCell.swift; sourceTree = "<group>"; };
+		A334E1A1206FEE5500E0A0CA /* LogInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInVC.swift; sourceTree = "<group>"; };
+		A334E1A2206FEE5500E0A0CA /* LogInVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogInVC.xib; sourceTree = "<group>"; };
+		A360B2DC205C010A003C5858 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		A360B2DE205C02BC003C5858 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A39420832045E62600F045C9 /* api-client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "api-client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A39420862045E62600F045C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A39420882045E62600F045C9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A39420882045E62600F045C9 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		A394208B2045E62600F045C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A394208D2045E62600F045C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A39420902045E62600F045C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -36,6 +50,8 @@
 		A39420972045E62600F045C9 /* api-clientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "api-clientTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A394209B2045E62600F045C9 /* api_clientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = api_clientTests.swift; sourceTree = "<group>"; };
 		A394209D2045E62600F045C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A39420AB2045E7A300F045C9 /* FoodTruck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTruck.swift; sourceTree = "<group>"; wrapsLines = 0; };
+		A39420AD2045ED9E00F045C9 /* FoodTruckReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTruckReview.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,11 +93,11 @@
 		A39420852045E62600F045C9 /* api-client */ = {
 			isa = PBXGroup;
 			children = (
-				A39420862045E62600F045C9 /* AppDelegate.swift */,
-				A39420882045E62600F045C9 /* ViewController.swift */,
-				A394208A2045E62600F045C9 /* Main.storyboard */,
-				A394208D2045E62600F045C9 /* Assets.xcassets */,
-				A394208F2045E62600F045C9 /* LaunchScreen.storyboard */,
+				A39420AA2045E6ED00F045C9 /* Model */,
+				A39420A92045E6E800F045C9 /* View */,
+				A39420A82045E6E300F045C9 /* Controller */,
+				A39420A72045E6DC00F045C9 /* Rescources */,
+				A39420A62045E6D200F045C9 /* Services */,
 				A39420922045E62600F045C9 /* Info.plist */,
 			);
 			path = "api-client";
@@ -94,6 +110,54 @@
 				A394209D2045E62600F045C9 /* Info.plist */,
 			);
 			path = "api-clientTests";
+			sourceTree = "<group>";
+		};
+		A39420A62045E6D200F045C9 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A360B2DC205C010A003C5858 /* DataService.swift */,
+				A321C8BA206A5FE200BE4BD4 /* AuthService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A39420A72045E6DC00F045C9 /* Rescources */ = {
+			isa = PBXGroup;
+			children = (
+				A394208D2045E62600F045C9 /* Assets.xcassets */,
+				A360B2DE205C02BC003C5858 /* Constants.swift */,
+			);
+			path = Rescources;
+			sourceTree = "<group>";
+		};
+		A39420A82045E6E300F045C9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A39420862045E62600F045C9 /* AppDelegate.swift */,
+				A39420882045E62600F045C9 /* MainVC.swift */,
+				A334E1A1206FEE5500E0A0CA /* LogInVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A39420A92045E6E800F045C9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A394208A2045E62600F045C9 /* Main.storyboard */,
+				A394208F2045E62600F045C9 /* LaunchScreen.storyboard */,
+				A321C8BC206A75C900BE4BD4 /* FoodTruckCell.swift */,
+				A334E1A2206FEE5500E0A0CA /* LogInVC.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A39420AA2045E6ED00F045C9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A39420AB2045E7A300F045C9 /* FoodTruck.swift */,
+				A39420AD2045ED9E00F045C9 /* FoodTruckReview.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,6 +245,7 @@
 			files = (
 				A39420912045E62600F045C9 /* LaunchScreen.storyboard in Resources */,
 				A394208E2045E62600F045C9 /* Assets.xcassets in Resources */,
+				A334E1A4206FEE5500E0A0CA /* LogInVC.xib in Resources */,
 				A394208C2045E62600F045C9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -199,8 +264,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A39420892045E62600F045C9 /* ViewController.swift in Sources */,
+				A39420892045E62600F045C9 /* MainVC.swift in Sources */,
 				A39420872045E62600F045C9 /* AppDelegate.swift in Sources */,
+				A39420AC2045E7A300F045C9 /* FoodTruck.swift in Sources */,
+				A39420AE2045ED9E00F045C9 /* FoodTruckReview.swift in Sources */,
+				A360B2DD205C010A003C5858 /* DataService.swift in Sources */,
+				A360B2DF205C02BC003C5858 /* Constants.swift in Sources */,
+				A321C8BB206A5FE200BE4BD4 /* AuthService.swift in Sources */,
+				A321C8BD206A75C900BE4BD4 /* FoodTruckCell.swift in Sources */,
+				A334E1A3206FEE5500E0A0CA /* LogInVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
