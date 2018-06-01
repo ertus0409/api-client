@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A321C8BB206A5FE200BE4BD4 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A321C8BA206A5FE200BE4BD4 /* AuthService.swift */; };
 		A321C8BD206A75C900BE4BD4 /* FoodTruckCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A321C8BC206A75C900BE4BD4 /* FoodTruckCell.swift */; };
+		A32E607E20C19F1B0054391A /* AddTruckVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32E607D20C19F1B0054391A /* AddTruckVC.swift */; };
 		A334E1A3206FEE5500E0A0CA /* LogInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A334E1A1206FEE5500E0A0CA /* LogInVC.swift */; };
 		A334E1A4206FEE5500E0A0CA /* LogInVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A334E1A2206FEE5500E0A0CA /* LogInVC.xib */; };
 		A360B2DD205C010A003C5858 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A360B2DC205C010A003C5858 /* DataService.swift */; };
@@ -36,6 +37,7 @@
 /* Begin PBXFileReference section */
 		A321C8BA206A5FE200BE4BD4 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		A321C8BC206A75C900BE4BD4 /* FoodTruckCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTruckCell.swift; sourceTree = "<group>"; };
+		A32E607D20C19F1B0054391A /* AddTruckVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTruckVC.swift; sourceTree = "<group>"; };
 		A334E1A1206FEE5500E0A0CA /* LogInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInVC.swift; sourceTree = "<group>"; };
 		A334E1A2206FEE5500E0A0CA /* LogInVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogInVC.xib; sourceTree = "<group>"; };
 		A360B2DC205C010A003C5858 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				A39420862045E62600F045C9 /* AppDelegate.swift */,
 				A39420882045E62600F045C9 /* MainVC.swift */,
 				A334E1A1206FEE5500E0A0CA /* LogInVC.swift */,
+				A32E607D20C19F1B0054391A /* AddTruckVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				A39420AE2045ED9E00F045C9 /* FoodTruckReview.swift in Sources */,
 				A360B2DD205C010A003C5858 /* DataService.swift in Sources */,
 				A360B2DF205C02BC003C5858 /* Constants.swift in Sources */,
+				A32E607E20C19F1B0054391A /* AddTruckVC.swift in Sources */,
 				A321C8BB206A5FE200BE4BD4 /* AuthService.swift in Sources */,
 				A321C8BD206A75C900BE4BD4 /* FoodTruckCell.swift in Sources */,
 				A334E1A3206FEE5500E0A0CA /* LogInVC.swift in Sources */,

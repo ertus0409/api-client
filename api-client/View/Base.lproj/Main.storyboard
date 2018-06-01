@@ -57,7 +57,9 @@
                                             <constraint firstAttribute="height" constant="40" id="iyY-1p-MTP"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="47"/>
-                                        <state key="normal" title="+"/>
+                                        <state key="normal" title="+">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
                                         <connections>
                                             <action selector="addButtonTappedWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hzJ-Oo-fVy"/>
                                         </connections>
@@ -156,11 +158,141 @@
                     <connections>
                         <outlet property="button" destination="rQC-Vf-SwT" id="bzj-pG-o0E"/>
                         <outlet property="tableView" destination="Q2b-3m-JBC" id="2gY-HH-hO1"/>
+                        <segue destination="bf2-TH-Svg" kind="show" identifier="showAddTruckVC" id="B66-41-sTt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="476" y="132.68365817091455"/>
+        </scene>
+        <!--Add TruckVC-->
+        <scene sceneID="SiT-th-VCM">
+            <objects>
+                <viewController id="bf2-TH-Svg" customClass="AddTruckVC" customModule="api_client" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XV1-Cz-lCR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CFh-zz-lIM">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="65"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add New Truck" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J1f-8b-5eH">
+                                        <rect key="frame" x="103.5" y="36" width="168" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="95e-yj-HaJ"/>
+                                            <constraint firstAttribute="width" constant="168" id="YhC-Wa-H8F"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cP1-H5-Dxy">
+                                        <rect key="frame" x="15" y="32" width="12" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="12" id="N15-f2-D27"/>
+                                            <constraint firstAttribute="height" constant="25" id="yxR-bv-hOX"/>
+                                        </constraints>
+                                        <state key="normal" image="Back Arrow"/>
+                                        <connections>
+                                            <action selector="backButtonTappedWithSender:" destination="bf2-TH-Svg" eventType="touchUpInside" id="KXX-4Q-R0g"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.48627450979999998" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="J1f-8b-5eH" firstAttribute="centerX" secondItem="CFh-zz-lIM" secondAttribute="centerX" id="1pk-rO-sHZ"/>
+                                    <constraint firstItem="cP1-H5-Dxy" firstAttribute="leading" secondItem="CFh-zz-lIM" secondAttribute="leading" constant="15" id="Aks-JO-hW2"/>
+                                    <constraint firstAttribute="height" constant="65" id="TFE-82-ICJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="J1f-8b-5eH" secondAttribute="bottom" constant="8" id="oFG-0a-1gL"/>
+                                    <constraint firstAttribute="bottom" secondItem="cP1-H5-Dxy" secondAttribute="bottom" constant="8" id="xty-gF-llh"/>
+                                </constraints>
+                            </view>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Food Truck Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bsm-7F-VsO">
+                                <rect key="frame" x="41" y="127" width="293" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Food Type" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Fh-yp-pBR">
+                                <rect key="frame" x="41" y="165" width="293" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Average Cost (ex: 9.99)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JiJ-Dj-IfH">
+                                <rect key="frame" x="41" y="203" width="293" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Latitude Decimal Degrees" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ReJ-nk-boY">
+                                <rect key="frame" x="41" y="241" width="293" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Longitude Decimal Degrees" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GtO-7V-SVy">
+                                <rect key="frame" x="41" y="279" width="293" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="hwl-sh-gc7">
+                                <rect key="frame" x="62.5" y="350" width="250" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zc0-TG-2wx">
+                                        <rect key="frame" x="0.0" y="0.0" width="105" height="30"/>
+                                        <state key="normal" title="Add New Truck"/>
+                                        <connections>
+                                            <action selector="addButtonTappedWithSender:" destination="bf2-TH-Svg" eventType="touchUpInside" id="GIu-VH-OI7"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T52-tl-DcH">
+                                        <rect key="frame" x="145" y="0.0" width="105" height="30"/>
+                                        <state key="normal" title="Cancel"/>
+                                        <connections>
+                                            <action selector="cancelBUttonTappedWithSender:" destination="bf2-TH-Svg" eventType="touchUpInside" id="R9j-za-OSM"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="GtO-7V-SVy" firstAttribute="leading" secondItem="ReJ-nk-boY" secondAttribute="leading" id="4Ec-2m-WG0"/>
+                            <constraint firstItem="JiJ-Dj-IfH" firstAttribute="top" secondItem="8Fh-yp-pBR" secondAttribute="bottom" constant="8" id="8bo-VR-cza"/>
+                            <constraint firstItem="JiJ-Dj-IfH" firstAttribute="trailing" secondItem="8Fh-yp-pBR" secondAttribute="trailing" id="C6S-KP-g8N"/>
+                            <constraint firstItem="hwl-sh-gc7" firstAttribute="centerX" secondItem="XV1-Cz-lCR" secondAttribute="centerX" id="DWJ-aB-vtI"/>
+                            <constraint firstItem="rmx-PI-skH" firstAttribute="trailing" secondItem="CFh-zz-lIM" secondAttribute="trailing" id="HRZ-Fu-N7h"/>
+                            <constraint firstItem="8Fh-yp-pBR" firstAttribute="leading" secondItem="bsm-7F-VsO" secondAttribute="leading" id="Hbb-xI-kVM"/>
+                            <constraint firstItem="JiJ-Dj-IfH" firstAttribute="leading" secondItem="8Fh-yp-pBR" secondAttribute="leading" id="LeZ-Qg-JUq"/>
+                            <constraint firstItem="ReJ-nk-boY" firstAttribute="trailing" secondItem="JiJ-Dj-IfH" secondAttribute="trailing" id="Lhn-SR-d8f"/>
+                            <constraint firstItem="hwl-sh-gc7" firstAttribute="top" secondItem="GtO-7V-SVy" secondAttribute="bottom" constant="41" id="M0g-cM-76f"/>
+                            <constraint firstItem="ReJ-nk-boY" firstAttribute="top" secondItem="JiJ-Dj-IfH" secondAttribute="bottom" constant="8" id="MGL-A0-KVd"/>
+                            <constraint firstItem="rmx-PI-skH" firstAttribute="trailing" secondItem="bsm-7F-VsO" secondAttribute="trailing" constant="41" id="NN4-4Q-ko3"/>
+                            <constraint firstItem="8Fh-yp-pBR" firstAttribute="top" secondItem="bsm-7F-VsO" secondAttribute="bottom" constant="8" id="YST-23-GrJ"/>
+                            <constraint firstItem="bsm-7F-VsO" firstAttribute="leading" secondItem="rmx-PI-skH" secondAttribute="leading" constant="41" id="ZeC-1H-Gke"/>
+                            <constraint firstItem="8Fh-yp-pBR" firstAttribute="trailing" secondItem="bsm-7F-VsO" secondAttribute="trailing" id="hQe-Xv-wyD"/>
+                            <constraint firstItem="GtO-7V-SVy" firstAttribute="trailing" secondItem="ReJ-nk-boY" secondAttribute="trailing" id="ih1-Az-0lX"/>
+                            <constraint firstItem="ReJ-nk-boY" firstAttribute="leading" secondItem="JiJ-Dj-IfH" secondAttribute="leading" id="k7X-Rl-PtT"/>
+                            <constraint firstItem="CFh-zz-lIM" firstAttribute="leading" secondItem="rmx-PI-skH" secondAttribute="leading" id="kxy-wy-nd9"/>
+                            <constraint firstItem="GtO-7V-SVy" firstAttribute="top" secondItem="ReJ-nk-boY" secondAttribute="bottom" constant="8" id="rvB-Mg-Piw"/>
+                            <constraint firstItem="bsm-7F-VsO" firstAttribute="top" secondItem="CFh-zz-lIM" secondAttribute="bottom" constant="62" id="t3f-Lw-7gY"/>
+                            <constraint firstItem="CFh-zz-lIM" firstAttribute="top" secondItem="XV1-Cz-lCR" secondAttribute="top" id="xDL-gg-bzu"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="rmx-PI-skH"/>
+                    </view>
+                    <connections>
+                        <outlet property="avgCostField" destination="JiJ-Dj-IfH" id="15a-Ce-LAZ"/>
+                        <outlet property="foodTypeField" destination="8Fh-yp-pBR" id="4FM-eG-r7x"/>
+                        <outlet property="latitudeField" destination="ReJ-nk-boY" id="cp9-po-m1b"/>
+                        <outlet property="longitudeField" destination="GtO-7V-SVy" id="NG2-m6-DDy"/>
+                        <outlet property="nameField" destination="bsm-7F-VsO" id="RGo-u5-qoA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZbI-dL-6RJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="480.80000000000001" y="980.95952023988013"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="6jl-iV-bOn">
@@ -181,6 +313,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Back Arrow" width="34" height="73"/>
         <image name="Logo" width="424" height="236"/>
     </resources>
 </document>

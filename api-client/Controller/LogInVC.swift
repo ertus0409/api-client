@@ -32,27 +32,6 @@ class LogInVC: UIViewController {
             return
         }
         
-//        AuthService.instance.registerUser(email: email, password: pass, completion: { Success in
-//            if Success {
-//                AuthService.instance.logIn(email: email, password: pass, completion: { Success in
-//                    if Success {
-//                        self.dismiss(animated: true, completion: nil)
-//                    } else {
-//                        OperationQueue.main.addOperation {
-//                            self.showAlert(with: "Error", message: "Incorrect password ")
-//                        }
-//                    }
-//                })
-//            } else {
-//                OperationQueue.main.addOperation {
-//                    self.showAlert(with: "Error", message: "An unknown error occured savinng the account.")
-//                }
-//            }
-//
-//
-//        })
-    
-        
         AuthService.instance.logIn(email: email, password: pass, completion: { Success in
             if Success {
                 self.dismiss(animated: true, completion: nil)
