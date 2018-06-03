@@ -57,7 +57,7 @@ class AddTruckVC: UIViewController {
     }
     
     @IBAction func cancelBUttonTapped(sender: UIButton) {
-        
+        self.dismissViewController()
     }
     
     

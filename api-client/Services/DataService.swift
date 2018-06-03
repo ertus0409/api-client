@@ -120,7 +120,7 @@ class DataService {
                     //Success
                     //Check for status code 200. If statusCode != 200 then the process was NOT successful
                     let statusCode = (response as! HTTPURLResponse).statusCode
-                    print("URL session succeeded : HTTP \(statusCode)")
+                    print("URL session succeededd : HTTP \(statusCode)")
                     if statusCode != 200 {
                         completion(false)
                         return
