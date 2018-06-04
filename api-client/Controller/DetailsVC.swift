@@ -43,6 +43,30 @@ class DetailsVC: UIViewController {
     }
     
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showReviewsVC" {
+            let destinationViewController = segue.destination as! ReviewsVC
+            destinationViewController.selectedFoodTruck = selectedFoodTruck
+        } else if segue.identifier == "showAddReviewVC" {
+            let destinationViewController = segue.destination as! AddReviewVC
+            destinationViewController.selectedFoodTruck = selectedFoodTruck
+        }
+    }
+    
+    @IBAction func reviewsButtonTapped() {
+        performSegue(withIdentifier: "showReviewsVC", sender: self)
+    }
+    @IBAction func addReviewButtonTapped() {
+        
+    }
+    
+    func showLogInVC() {
+        logInVc = LogInVC()
+        logInVc?.modalPresentationStyle = UIModalPresentationStyle.formSheet
+        self.present(logInVc!, animated: true, completion: nil)
+    }
+    
+    
     @IBAction func backButtonTapped(sender: UIButton) {
         _ = navigationController?.popViewController(animated: true)
     }
