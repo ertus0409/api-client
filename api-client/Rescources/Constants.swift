@@ -25,7 +25,7 @@ let GET_ALL_FT_REVIEWS = "\(BASE_API_URL)/foodtruck/reviews"
 let POST_ADD_FT = "\(BASE_API_URL)/foodtruck/add"
 
 //POST add review
-let POST_ADD_REVIEW = "\(BASE_API_URL)/foodtruck/review/add"
+let POST_ADD_REVIEW = "\(BASE_API_URL)/foodtruck/reviews/add"
 
 //Boolean Auth UserDefaults keys
 let DEFAULTS_REGISTERED = "isRegistered"

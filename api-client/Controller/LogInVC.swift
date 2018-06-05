@@ -36,9 +36,9 @@ class LogInVC: UIViewController {
             if Success {
                 self.dismiss(animated: true, completion: nil)
             } else {
-                OperationQueue.main.addOperation {
-                    self.showAlert(with: "Error", message: "Incorrect credentials!")
-                }
+//                OperationQueue.main.addOperation {
+//                    self.showAlert(with: "Error", message: "Incorrect credentials!")
+//                }
             }
         })
     

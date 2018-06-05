@@ -20,6 +20,7 @@ class DataService {
     weak var delegate: DataServiceDelegate?
     var foodTrucks = [FoodTruck]()
     var reviews = [FoodTruckReview]()
+    var reviewsStatus = true
     
     //GET ALL FOODTRUCKS
     func getAllFoodTrucks(){
@@ -53,7 +54,7 @@ class DataService {
         session.finishTasksAndInvalidate()
     }
     
-    //Get all reviews for a specific foodtruck
+    //GET all REVIEWS for a specific foodtruck
     func getAllReviews(for truck: FoodTruck) {
         let sessionConfig = URLSessionConfiguration.default
         
@@ -72,6 +73,13 @@ class DataService {
                 //parse json data
                 if let data = data {
                     self.reviews = FoodTruckReview.parseReviewJsonData(data: data)
+                    if self.reviews.count == 0 {
+                        self.reviewsStatus = false
+                        
+                    } else {
+                        self.reviewsStatus = true
+                    }
+                    print("REV: \(self.reviewsStatus)")
                     self.delegate?.reviewsLoaded()
                 }
             } else {
@@ -139,8 +147,9 @@ class DataService {
         } catch let err {
             completion(false)
             print(err)
-        }
-        
+            }
+      }
+    
         //POST add a new foodtruck review
         func addNewReview(_ foodtruckId: String, title: String, text: String, completion: @escaping callback) {
             let json: [String: Any] = [
@@ -157,12 +166,11 @@ class DataService {
                 guard let URL = URL(string: "\(POST_ADD_REVIEW)/\(foodtruckId)") else { return }
                 var request = URLRequest(url: URL)
                 request.httpMethod = "POST"
-                
+                                
                 guard let token = AuthService.instance.authToken else {
                     completion(false)
                     return
                 }
-                
                 request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
                 request.addValue("application/json", forHTTPHeaderField: "Content-Type")
                 
@@ -213,4 +221,4 @@ class DataService {
     
     
     
-}
+

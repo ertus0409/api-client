@@ -33,6 +33,7 @@ class ReviewsVC: UIViewController {
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 140
+        
     }
     
     func showAlert(with title: String?, message: String?) {
@@ -58,6 +59,11 @@ extension ReviewsVC: DataServiceDelegate {
         OperationQueue.main.addOperation {
             self.tableView.reloadData()
         }
+        if !DataService.instance.reviewsStatus {
+            OperationQueue.main.addOperation {
+            self.showAlert(with: "Sorry", message: "NO reviws available")
+            }
+        }
     }
 }
 
@@ -69,11 +75,7 @@ extension ReviewsVC: UITableViewDataSource, UITableViewDelegate {
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if DataService.instance.reviews.count == 0 {
-            self.showAlert(with: "Sorry", message: "No reviews have been added for this truck")
-        }
         return DataService.instance.reviews.count
-        
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewCell", for: indexPath) as? ReviewCell {
