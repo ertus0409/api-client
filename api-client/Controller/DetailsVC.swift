@@ -110,11 +110,8 @@ class DetailsVC: UIViewController {
         checkingAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
             
         }))
-        
         present(checkingAlert, animated: true, completion: nil)
-
-        
-        
+ 
     }
     
     

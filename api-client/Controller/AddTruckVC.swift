@@ -22,6 +22,11 @@ class AddTruckVC: UIViewController {
     @IBOutlet weak var longitudeField: UITextField!
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var addTruckBtn: UIButton!
+    @IBOutlet weak var chooseLocBtn: UIButton!
+    
+    static let instance = AddTruckVC()
+    static var mapLatitude: String?
+    static var mapLongitude: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +45,25 @@ class AddTruckVC: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        print("CO: \(AddTruckVC.mapLongitude)   \(AddTruckVC.mapLongitude)")
+        
+        guard let lat = AddTruckVC.mapLatitude else { return }
+        guard let long = AddTruckVC.mapLongitude else { return }
+        
+        latitudeField.text = lat
+        longitudeField.text = long
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        
+        AddTruckVC.mapLongitude = nil
+        AddTruckVC.mapLatitude = nil
+    }
     
     
     
@@ -99,6 +123,10 @@ class AddTruckVC: UIViewController {
         dismissViewController()
     }
     
+    @IBAction func chooseLocationFromMapTapped(sender: UIButton) {
+        performSegue(withIdentifier: "mapSelectVC", sender: self)
+    }
+    
     func dismissViewController() {
         OperationQueue.main.addOperation {
             _ = self.navigationController?.popViewController(animated: true)
@@ -111,6 +139,15 @@ class AddTruckVC: UIViewController {
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "MapSelectVC" {
+            let destination = segue.destination as! MapSelectVC
+            if let truck = self.selectedFoodtruck {
+                destination.selectedFoodTruck = truck
+            }
+        }
     }
 
 }
