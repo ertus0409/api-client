@@ -78,7 +78,7 @@
                                 <rect key="frame" x="0.0" y="65" width="375" height="602"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FoodTruckCell" rowHeight="117" id="kyh-cT-583" customClass="FoodTruckCell" customModule="api_client" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FoodTruckCell" rowHeight="117" id="kyh-cT-583" customClass="FoodTruckCell" customModule="api_client" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="117"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kyh-cT-583" id="9xY-js-Qws">
@@ -274,16 +274,44 @@
                                 </connections>
                             </button>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="1eH-Js-jxR">
-                                <rect key="frame" x="10" y="232" width="355" height="425"/>
+                                <rect key="frame" x="10" y="232" width="355" height="385"/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hkF-oK-NLH">
+                                <rect key="frame" x="141" y="194" width="93" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="93" id="VDd-Wl-tWy"/>
+                                    <constraint firstAttribute="height" constant="30" id="xdp-Rf-qvf"/>
+                                </constraints>
+                                <state key="normal" title="Update Truck"/>
+                                <connections>
+                                    <action selector="updateTruckTapped:" destination="nWA-uW-Ks9" eventType="touchUpInside" id="wTD-0E-uVj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IdB-Ub-Yga">
+                                <rect key="frame" x="137.5" y="629" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="AHc-BD-Bnd"/>
+                                    <constraint firstAttribute="height" constant="30" id="PwP-T9-9vh"/>
+                                </constraints>
+                                <state key="normal" title="Delete Truck">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteTruckTapped" destination="nWA-uW-Ks9" eventType="touchUpInside" id="9Ih-qZ-4um"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="MGC-Q6-5lI" firstAttribute="bottom" secondItem="1eH-Js-jxR" secondAttribute="bottom" constant="10" id="96V-po-oA1"/>
+                            <constraint firstItem="IdB-Ub-Yga" firstAttribute="centerX" secondItem="TNd-ei-X6E" secondAttribute="centerX" id="BYB-HN-I4o"/>
                             <constraint firstItem="1eH-Js-jxR" firstAttribute="leading" secondItem="MGC-Q6-5lI" secondAttribute="leading" constant="10" id="Fdx-sn-lgX"/>
                             <constraint firstItem="MGC-Q6-5lI" firstAttribute="trailing" secondItem="qda-LF-N47" secondAttribute="trailing" id="Kmb-CA-PLq"/>
+                            <constraint firstItem="IdB-Ub-Yga" firstAttribute="top" secondItem="1eH-Js-jxR" secondAttribute="bottom" constant="12" id="LQS-qK-u3T"/>
+                            <constraint firstItem="hkF-oK-NLH" firstAttribute="centerX" secondItem="TNd-ei-X6E" secondAttribute="centerX" id="OCb-eC-kMR"/>
+                            <constraint firstItem="1eH-Js-jxR" firstAttribute="top" secondItem="hkF-oK-NLH" secondAttribute="bottom" constant="8" id="R1w-oi-XGk"/>
                             <constraint firstItem="nOa-vi-A2s" firstAttribute="top" secondItem="qda-LF-N47" secondAttribute="bottom" constant="25" id="R52-5g-TpC"/>
                             <constraint firstItem="qda-LF-N47" firstAttribute="leading" secondItem="MGC-Q6-5lI" secondAttribute="leading" id="Vf7-aC-pBk"/>
+                            <constraint firstItem="MGC-Q6-5lI" firstAttribute="bottom" secondItem="IdB-Ub-Yga" secondAttribute="bottom" constant="8" id="WKE-2E-CW6"/>
                             <constraint firstItem="1eH-Js-jxR" firstAttribute="top" secondItem="c49-wJ-a4b" secondAttribute="bottom" constant="8" id="aGe-cE-wbL"/>
                             <constraint firstItem="MGC-Q6-5lI" firstAttribute="trailing" secondItem="1eH-Js-jxR" secondAttribute="trailing" constant="10" id="ajQ-st-9XZ"/>
                             <constraint firstItem="nOa-vi-A2s" firstAttribute="leading" secondItem="MGC-Q6-5lI" secondAttribute="leading" constant="16" id="brx-Pv-4rf"/>
@@ -303,6 +331,7 @@
                         <outlet property="nameLbl" destination="p5A-Iv-7tj" id="A81-wa-AMx"/>
                         <segue destination="9C3-hh-qE6" kind="show" identifier="showReviewsVC" id="Kkc-s1-JKQ"/>
                         <segue destination="doh-Is-j1l" kind="show" identifier="showAddReviewVC" id="nKS-gy-FU0"/>
+                        <segue destination="bf2-TH-Svg" kind="show" identifier="updateTruck" id="4Vi-Cb-m12"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A8h-Kc-2VU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -355,7 +384,7 @@
                                 <rect key="frame" x="0.0" y="65" width="375" height="602"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReviewCell" rowHeight="140" id="plW-KA-GUV" customClass="ReviewCell" customModule="api_client" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReviewCell" rowHeight="140" id="plW-KA-GUV" customClass="ReviewCell" customModule="api_client" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="140"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="plW-KA-GUV" id="P0R-Ly-xug">
@@ -429,9 +458,9 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="65"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add New Truck" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J1f-8b-5eH">
-                                        <rect key="frame" x="103.5" y="36" width="168" height="21"/>
+                                        <rect key="frame" x="103.5" y="27" width="168" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="21" id="95e-yj-HaJ"/>
+                                            <constraint firstAttribute="height" constant="30" id="95e-yj-HaJ"/>
                                             <constraint firstAttribute="width" constant="168" id="YhC-Wa-H8F"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
@@ -535,11 +564,13 @@
                         <viewLayoutGuide key="safeArea" id="rmx-PI-skH"/>
                     </view>
                     <connections>
+                        <outlet property="addTruckBtn" destination="zc0-TG-2wx" id="yas-HH-x7h"/>
                         <outlet property="avgCostField" destination="JiJ-Dj-IfH" id="15a-Ce-LAZ"/>
                         <outlet property="foodTypeField" destination="8Fh-yp-pBR" id="4FM-eG-r7x"/>
                         <outlet property="latitudeField" destination="ReJ-nk-boY" id="cp9-po-m1b"/>
                         <outlet property="longitudeField" destination="GtO-7V-SVy" id="NG2-m6-DDy"/>
                         <outlet property="nameField" destination="bsm-7F-VsO" id="RGo-u5-qoA"/>
+                        <outlet property="nameLbl" destination="J1f-8b-5eH" id="FTG-Kq-7re"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZbI-dL-6RJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -687,4 +718,7 @@
         <image name="Back Arrow" width="34" height="73"/>
         <image name="Logo" width="424" height="236"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="4Vi-Cb-m12"/>
+    </inferredMetricsTieBreakers>
 </document>

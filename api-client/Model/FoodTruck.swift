@@ -21,12 +21,46 @@ class FoodTruck: NSObject, MKAnnotation {
     var lat: Double = 0.0
     var long: Double = 0.0
     
+    
     @objc var title: String?
     @objc var subtitle: String?
     
     @objc var coordinate: CLLocationCoordinate2D {
         return CLLocationCoordinate2D(latitude: self.lat, longitude: self.long)
     }
+    
+    static func parseSingleTruckData(data: Data) -> FoodTruck! {
+        
+        var ft = FoodTruck()
+        
+        do {
+            
+            let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+            
+            if let truck = jsonResult as? Dictionary<String, AnyObject> {
+                ft.id = truck["_id"] as! String
+                ft.avgCost = truck["avgcost"] as! Double
+                ft.foodtype = truck["foodtype"] as! String
+                ft.name = truck["name"] as! String
+                let geometry = truck["geometry"] as! Dictionary<String, AnyObject>
+                ft.geomType = geometry["type"] as! String
+                let coords = geometry["coordinates"] as! Dictionary<String, AnyObject>
+                ft.lat = coords["lat"] as! Double
+                ft.long = coords["long"] as! Double
+                ft.title = ft.name
+                ft.subtitle = ft.foodtype
+                
+                
+                
+            }
+            
+        } catch let err {
+            print(err)
+        }
+        
+        return ft
+    }
+    
     
     static func ParseFoodTruckJsonData(data: Data) -> [FoodTruck] {
         var foodtrucks = [FoodTruck]()
@@ -50,6 +84,7 @@ class FoodTruck: NSObject, MKAnnotation {
                     newTruck.subtitle = newTruck.foodtype
 //                    print("MyTruck: ",newTruck.title, newTruck.subtitle)
                     foodtrucks.append(newTruck)
+                    print("FOD: \(foodtrucks)")
                 }
             }
         } catch let err {

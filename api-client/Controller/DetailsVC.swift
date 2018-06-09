@@ -21,13 +21,15 @@ class DetailsVC: UIViewController {
     @IBOutlet weak var avgCostLbl: UILabel!
     @IBOutlet weak var mapView: MKMapView!
     
+    static let instance = DetailsVC()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         nameLbl.text = selectedFoodTruck?.name
         foodTypeLbl.text = selectedFoodTruck?.foodtype.capitalized
-        avgCostLbl.text = "\(selectedFoodTruck!.avgCost)"
+        avgCostLbl.text = "$\(selectedFoodTruck!.avgCost)"
         
         
         mapView.addAnnotation(selectedFoodTruck!)
@@ -35,6 +37,7 @@ class DetailsVC: UIViewController {
         
 
     }
+    
     
     
     func centerMapOnLocation(_ location: CLLocation) {
@@ -50,6 +53,9 @@ class DetailsVC: UIViewController {
         } else if segue.identifier == "showAddReviewVC" {
             let destinationViewController = segue.destination as! AddReviewVC
             destinationViewController.selectedFoodTruck = selectedFoodTruck
+        } else if segue.identifier == "updateTruck" {
+            let destinationViewController = segue.destination as! AddTruckVC
+            destinationViewController.selectedFoodtruck = selectedFoodTruck
         }
     }
     
@@ -70,6 +76,61 @@ class DetailsVC: UIViewController {
         self.present(logInVc!, animated: true, completion: nil)
     }
     
+    
+    @IBAction func updateTruckTapped(_ sender: Any) {
+        if AuthService.instance.isAuthenticated! {
+            performSegue(withIdentifier: "updateTruck", sender: self)
+        } else {
+            showLogInVC()
+        }
+        
+    }
+    
+    @IBAction func deleteTruckTapped() {
+        let checkingAlert = UIAlertController(title: "Deleting FoodTruck", message: "Are you sure you want to delete this truck", preferredStyle: .alert)
+        
+        checkingAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
+            
+            if let truck = self.selectedFoodTruck {
+                DataService.instance.deleteTruck(truck.id, completion: { (Success) in
+                    if Success {
+                        print("FoodTruck deleted successfully")
+                        DataService.instance.getAllFoodTrucks()
+                        self.dismissViewController()
+                    } else {
+                        print("An error occured")
+                    }
+                })
+            } else {
+                
+            }
+            
+        }))
+        
+        checkingAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+            
+        }))
+        
+        present(checkingAlert, animated: true, completion: nil)
+
+        
+        
+    }
+    
+    
+    func dismissViewController() {
+        OperationQueue.main.addOperation {
+            _ = self.navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    func showAlert(with title: String?, message: String?) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: title, style: .default, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+        
+    }
     
     @IBAction func backButtonTapped(sender: UIButton) {
         _ = navigationController?.popViewController(animated: true)

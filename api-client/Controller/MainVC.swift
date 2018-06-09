@@ -31,6 +31,7 @@ class MainVC: UIViewController {
         tableView.dataSource = self
         
         DataService.instance.getAllFoodTrucks()
+        tableView.reloadData()
     }
     
     func showLogInVC() {

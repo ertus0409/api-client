@@ -21,6 +21,7 @@ class DataService {
     var foodTrucks = [FoodTruck]()
     var reviews = [FoodTruckReview]()
     var reviewsStatus = true
+    var selectedTruck: FoodTruck?
     
     //GET ALL FOODTRUCKS
     func getAllFoodTrucks(){
@@ -41,6 +42,7 @@ class DataService {
                 let statusCode = (response as! HTTPURLResponse).statusCode
                 print("URL session task succeeded. HTTP \(statusCode)")
                 if let data = data {
+                    
                     self.foodTrucks = FoodTruck.ParseFoodTruckJsonData(data: data)
                     self.delegate?.trucksLoaded()
                 }
@@ -53,6 +55,36 @@ class DataService {
         task.resume()
         session.finishTasksAndInvalidate()
     }
+    
+    //GET truck by id
+//    func getTruckById(id: String) {
+//        let sessionConfig = URLSessionConfiguration.default
+//        let session = URLSession(configuration: sessionConfig, delegate: nil, delegateQueue: nil)
+//
+//        guard let URL = URL(string: "\(BASE_API_URL)/\(id)") else { return }
+//
+//        var request = URLRequest(url: URL)
+//        request.httpMethod = "GET"
+//
+//        let task = session.dataTask(with: request, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
+//            if error == nil {
+//                //Success
+//                let statusCode = (response as! HTTPURLResponse).statusCode
+//                print("Url session succceeded: \(statusCode)")
+//                //parse json
+//                if let data = data {
+//                    self.selectedTruck = FoodTruck.parseSingleTruckData(data: data)
+//                    self.delegate?.trucksLoaded()
+//                }
+//            } else {
+//                //Failure
+//                print("URL session task failed HTTP: \(error?.localizedDescription)")
+//            }
+//        })
+//        task.resume()
+//        session.finishTasksAndInvalidate()
+//    }
+    
     
     //GET all REVIEWS for a specific foodtruck
     func getAllReviews(for truck: FoodTruck) {
@@ -202,13 +234,129 @@ class DataService {
                 completion(false)
             }
         }
+    
+    
+    //PUT Update Truck Info
+    func updateTruck(_ foodtruckId: String, name: String, avgCost: Double, foodtype: String, latitude: Double, longitude: Double, completion: @escaping callback) {
         
+        var json: [String: Any] = [
+            "name": name,
+            "avgcost": avgCost,
+            "foodtype": foodtype,
+            "geometry": [
+                "coordinates": ["lat": latitude, "long": longitude]
+            ]
+        ]
         
+        print("Update Json: \(json.description)")
         
-        
-        
-        
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
+            let sessionConfig = URLSessionConfiguration.default
+            let session = URLSession(configuration: sessionConfig, delegate: nil, delegateQueue: nil)
+            
+            guard let URL = URL(string: "\(PUT_UPDT_FT)/\(foodtruckId)") else { return }
+            var request = URLRequest(url: URL)
+            request.httpMethod = "PUT"
+            
+            guard let token = AuthService.instance.authToken else {
+                completion(false)
+                return
+            }
+            request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            
+            request.httpBody = jsonData
+            
+            let task = session.dataTask(with: request, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) in
+                if error == nil {
+                    //Success
+                    let statusCode = (response as! HTTPURLResponse).statusCode
+                    print("Url session task succeeded : HTTP \(statusCode)")
+                    //Check for 200 statusCode
+                    if statusCode != 200{
+                        print("Unsuccessful")
+                        completion(false)
+                        return
+                    } else {
+                        self.getAllFoodTrucks()
+                        completion(true)
+                    }
+                } else {
+                    //Failure
+                    print("Url session task failed: \(error?.localizedDescription)")
+                    completion(false)
+                }
+            })
+            task.resume()
+            session.finishTasksAndInvalidate()
+        } catch let err {
+            print(err)
+            completion(false)
+        }
     }
+        
+        
+        //DELETE truck
+        func deleteTruck(_ id: String, completion: @escaping callback) {
+            
+            
+            do {
+                let sessionConfig = URLSessionConfiguration.default
+                let session = URLSession(configuration: sessionConfig, delegate: nil, delegateQueue: nil)
+                
+                guard let URL = URL(string: "\(PUT_UPDT_FT)/\(id)") else { return }
+                var request = URLRequest(url: URL)
+                request.httpMethod = "DELETE"
+                
+                guard let token = AuthService.instance.authToken else {
+                    completion(false)
+                    return
+                }
+                request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+                
+                let task = session.dataTask(with: request, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) in
+                    if error == nil {
+                        //Success
+                        let statusCode = (response as! HTTPURLResponse).statusCode
+                        print("Url session task succeeded : HTTP \(statusCode)")
+                        //Check for 200 statusCode
+                        if statusCode != 200{
+                            print("Unsuccessful")
+                            completion(false)
+                            return
+                        } else {
+                            completion(true)
+                        }
+                    } else {
+                        //Failure
+                        print("Url session task failed: \(error?.localizedDescription)")
+                        completion(false)
+                    }
+                })
+                task.resume()
+                session.finishTasksAndInvalidate()
+            } catch let err {
+                print(err)
+                completion(false)
+            }
+            
+        }
+        
+        
+        
+        
+        
+        
+        
+}
+        
+        
+        
+        
+        
+        
+
     
     
     

@@ -27,6 +27,12 @@ let POST_ADD_FT = "\(BASE_API_URL)/foodtruck/add"
 //POST add review
 let POST_ADD_REVIEW = "\(BASE_API_URL)/foodtruck/reviews/add"
 
+//PUT update truck
+let PUT_UPDT_FT = "\(BASE_API_URL)/foodtruck"
+
+//DELETE truck
+let DELETE_FT = "\(BASE_API_URL)/foodtruck/"
+
 //Boolean Auth UserDefaults keys
 let DEFAULTS_REGISTERED = "isRegistered"
 let DEFAULTS_AUTHENTICATED = "isAuthenticated"

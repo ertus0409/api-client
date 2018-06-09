@@ -10,17 +10,38 @@ import UIKit
 
 class AddTruckVC: UIViewController {
     
+    //VARIABLES:
+    var selectedFoodtruck: FoodTruck?
+    
+    
+    //IBOUTLETS:
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var avgCostField: UITextField!
     @IBOutlet weak var foodTypeField: UITextField!
     @IBOutlet weak var latitudeField: UITextField!
     @IBOutlet weak var longitudeField: UITextField!
+    @IBOutlet weak var nameLbl: UILabel!
+    @IBOutlet weak var addTruckBtn: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        if let truck = selectedFoodtruck {
+            nameLbl.text = "Update Truck"
+            nameField.text = truck.name
+            avgCostField.text = "\(truck.avgCost)"
+            foodTypeField.text = truck.foodtype
+            latitudeField.text = "\(truck.lat)"
+            longitudeField.text = "\(truck.long)"
+            addTruckBtn.setTitle("Update Truck", for: UIControlState.normal)
+        } else {
+            nameLbl.text = "Add New Truck"
+            addTruckBtn.setTitle("Add New Truck", for: UIControlState.normal)
+        }
     }
+    
+    
+    
     
     
     @IBAction func addButtonTapped(sender: UIButton) {
@@ -45,15 +66,28 @@ class AddTruckVC: UIViewController {
             return
         }
         
-        DataService.instance.addNewTruck(name, foodtype: foodtype, avgcost: avgcost, latitude: lat, longitude: long) { (Success) in
-            if Success {
-                print("FoodTruck successfully saved!")
-                self.dismissViewController()
-            } else {
-                self.showAlert(with: "Error", message: "Couldn't save food truck due to an unkown error!")
-                print("Couldn't save FoodTruck!")
+        if let truck = selectedFoodtruck {
+            DataService.instance.updateTruck(truck.id, name: name, avgCost: Double(avgcost), foodtype: foodtype, latitude: Double(lat), longitude: Double(long), completion: { (Success) in
+                if Success {
+                    print("Foodtruck UPDATED successfully")
+                    self.dismissViewController()
+                } else {
+                    self.showAlert(with: "Error", message: "Couldn't update truck info")
+                    print("Couldn't update truck!")
+                }
+            })
+        } else {
+            DataService.instance.addNewTruck(name, foodtype: foodtype, avgcost: avgcost, latitude: lat, longitude: long) { (Success) in
+                if Success {
+                    print("FoodTruck successfully saved!")
+                    self.dismissViewController()
+                } else {
+                    self.showAlert(with: "Error", message: "Couldn't save food truck due to an unkown error!")
+                    print("Couldn't save FoodTruck!")
+                }
             }
         }
+        
     }
     
     @IBAction func cancelBUttonTapped(sender: UIButton) {
