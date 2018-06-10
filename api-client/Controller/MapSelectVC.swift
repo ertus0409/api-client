@@ -16,9 +16,12 @@ class MapSelectVC: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var latitudeLbl: UILabel!
     @IBOutlet weak var longitudeLbl: UILabel!
     @IBOutlet weak var saveBtn: UIButton!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     
     //VARIABLES:
     var selectedFoodTruck: FoodTruck?
+    var searchCooridnate: CLLocationCoordinate2D?
     
     
     var truckLocation = MKPointAnnotation()
@@ -31,6 +34,8 @@ class MapSelectVC: UIViewController, MKMapViewDelegate {
             let initialLocation = CLLocation(latitude: truck.lat, longitude: truck.long)
             centerMapOnLocation(location: initialLocation)
         }
+        
+        searchBar.delegate = self
         
         saveBtn.isHidden = true
 
@@ -99,4 +104,66 @@ class MapSelectVC: UIViewController, MKMapViewDelegate {
 
     
 
+}
+extension MapSelectVC: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(searchBar.text!) { (placemarks:[CLPlacemark]?, error:Error?) in
+            if error == nil {
+                
+//                let placemark = placemarks?.first
+//
+//                let anno = MKPointAnnotation()
+//                anno.coordinate = (placemark?.location?.coordinate)!
+//                anno.title = self.searchBar.text!
+//
+//
+//
+//                self.mapView.addAnnotation(anno)
+//                self.mapView.selectAnnotation(anno, animated: true)
+                
+                let placemark = placemarks?.first
+//                self.searchCooridnate = placemark?.location?.coordinate
+                
+                guard let long = placemark?.location?.coordinate.longitude else { return }
+                guard let lat = placemark?.location?.coordinate.latitude else { return }
+                
+                
+                self.truckLocation.title = self.selectedFoodTruck?.title
+                self.truckLocation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+                
+                self.mapView.addAnnotation(self.truckLocation)
+                
+                let span = MKCoordinateSpanMake(0.1, 0.1)
+                let region = MKCoordinateRegion(center: (placemark?.location?.coordinate)!, span: span)
+                self.mapView.setRegion(region, animated: true)
+                
+                self.latitudeLbl.text = "\(lat)"
+                self.longitudeLbl.text = "\(long)"
+                
+                self.saveBtn.isHidden = false
+                
+                
+//                let identifier = "Annotation"
+//                var annotationVeiw = self.mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+//
+//                if annotationVeiw == nil {
+//                    annotationVeiw = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+//                    annotationVeiw?.canShowCallout = true
+//                } else {
+//                    annotationVeiw?.annotation = annotation
+//                }
+                
+            }else{
+                print(error?.localizedDescription ?? "error")
+            }
+            
+            
+        }
+        
+        
+    }
 }

@@ -27,6 +27,8 @@
 		A3A74D5E20C5715700CE40FB /* ReviewsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A74D5D20C5715700CE40FB /* ReviewsVC.swift */; };
 		A3A74D6020C5716400CE40FB /* AddReviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A74D5F20C5716400CE40FB /* AddReviewVC.swift */; };
 		A3A74D6220C5748200CE40FB /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A74D6120C5748200CE40FB /* ReviewCell.swift */; };
+		A3FB3F7320CD78B600104FDA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3FB3F7220CD78B600104FDA /* MapKit.framework */; };
+		A3FB3F7720CD826200104FDA /* RounndCornerBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FB3F7620CD826200104FDA /* RounndCornerBtn.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,8 @@
 		A3A74D5D20C5715700CE40FB /* ReviewsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsVC.swift; sourceTree = "<group>"; };
 		A3A74D5F20C5716400CE40FB /* AddReviewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewVC.swift; sourceTree = "<group>"; };
 		A3A74D6120C5748200CE40FB /* ReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
+		A3FB3F7220CD78B600104FDA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		A3FB3F7620CD826200104FDA /* RounndCornerBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RounndCornerBtn.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3FB3F7320CD78B600104FDA /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +95,7 @@
 				A39420852045E62600F045C9 /* api-client */,
 				A394209A2045E62600F045C9 /* api-clientTests */,
 				A39420842045E62600F045C9 /* Products */,
+				A3FB3F7120CD78B600104FDA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -165,6 +171,7 @@
 				A394208F2045E62600F045C9 /* LaunchScreen.storyboard */,
 				A321C8BC206A75C900BE4BD4 /* FoodTruckCell.swift */,
 				A334E1A2206FEE5500E0A0CA /* LogInVC.xib */,
+				A3FB3F7620CD826200104FDA /* RounndCornerBtn.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -176,6 +183,14 @@
 				A39420AD2045ED9E00F045C9 /* FoodTruckReview.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		A3FB3F7120CD78B600104FDA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A3FB3F7220CD78B600104FDA /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,6 +244,11 @@
 					A39420822045E62600F045C9 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					A39420962045E62600F045C9 = {
 						CreatedOnToolsVersion = 9.2;
@@ -293,6 +313,7 @@
 				A32E607E20C19F1B0054391A /* AddTruckVC.swift in Sources */,
 				A321C8BB206A5FE200BE4BD4 /* AuthService.swift in Sources */,
 				A3A74D5E20C5715700CE40FB /* ReviewsVC.swift in Sources */,
+				A3FB3F7720CD826200104FDA /* RounndCornerBtn.swift in Sources */,
 				A321C8BD206A75C900BE4BD4 /* FoodTruckCell.swift in Sources */,
 				A334E1A3206FEE5500E0A0CA /* LogInVC.swift in Sources */,
 				A3A74D5C20C562BE00CE40FB /* DetailsVC.swift in Sources */,
