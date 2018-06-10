@@ -77,7 +77,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Q2b-3m-JBC">
-                                <rect key="frame" x="0.0" y="65" width="375" height="602"/>
+                                <rect key="frame" x="0.0" y="121" width="375" height="546"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FoodTruckCell" rowHeight="117" id="kyh-cT-583" customClass="FoodTruckCell" customModule="api_client" customModuleProvider="target">
@@ -144,14 +144,24 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <searchBar contentMode="redraw" placeholder="Type names of the trucks to search ..." translatesAutoresizingMaskIntoConstraints="NO" id="TNh-tJ-B9B">
+                                <rect key="frame" x="0.0" y="65" width="375" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="wQ1-Bo-DyV"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Q2b-3m-JBC" secondAttribute="bottom" id="8Dc-0C-ijm"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pQv-9z-7r8" secondAttribute="trailing" id="EzY-1U-bYK"/>
+                            <constraint firstItem="Q2b-3m-JBC" firstAttribute="top" secondItem="TNh-tJ-B9B" secondAttribute="bottom" id="HKf-20-ZCD"/>
                             <constraint firstItem="pQv-9z-7r8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Klg-fI-jp9"/>
                             <constraint firstItem="Q2b-3m-JBC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="S3M-Hc-mcS"/>
-                            <constraint firstItem="Q2b-3m-JBC" firstAttribute="top" secondItem="pQv-9z-7r8" secondAttribute="bottom" id="YCq-jX-PT2"/>
+                            <constraint firstItem="TNh-tJ-B9B" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="W0w-gc-zud"/>
+                            <constraint firstItem="TNh-tJ-B9B" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ZcO-me-cSv"/>
+                            <constraint firstItem="TNh-tJ-B9B" firstAttribute="top" secondItem="pQv-9z-7r8" secondAttribute="bottom" id="dmq-gG-YAa"/>
                             <constraint firstItem="Q2b-3m-JBC" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="uwd-Rx-i9D"/>
                             <constraint firstItem="pQv-9z-7r8" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="wSU-um-uzs"/>
                         </constraints>
@@ -160,6 +170,7 @@
                     <navigationItem key="navigationItem" id="bXj-tL-QlT"/>
                     <connections>
                         <outlet property="button" destination="rQC-Vf-SwT" id="bzj-pG-o0E"/>
+                        <outlet property="searchBar" destination="TNh-tJ-B9B" id="oAs-cw-Aj3"/>
                         <outlet property="tableView" destination="Q2b-3m-JBC" id="2gY-HH-hO1"/>
                         <segue destination="bf2-TH-Svg" kind="show" identifier="showAddTruckVC" id="B66-41-sTt"/>
                     </connections>
@@ -919,6 +930,6 @@
         <image name="Logo" width="424" height="236"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="4Vi-Cb-m12"/>
+        <segue reference="B66-41-sTt"/>
     </inferredMetricsTieBreakers>
 </document>

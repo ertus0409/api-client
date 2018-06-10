@@ -23,6 +23,7 @@ class DataService {
     var reviewsStatus = true
     var selectedTruck: FoodTruck?
     
+    
     //GET ALL FOODTRUCKS
     func getAllFoodTrucks(){
         let sessionConfig = URLSessionConfiguration.default

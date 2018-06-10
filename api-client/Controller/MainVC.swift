@@ -13,11 +13,13 @@ class MainVC: UIViewController {
     //IBOUTLETS:
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     //VARIABLES
     var dataService = DataService.instance
     var authService = AuthService.instance
-    
+    var filteredData = [FoodTruck]()
+    var isSearching = false
     var logInVC: LogInVC!
     
     
@@ -32,6 +34,9 @@ class MainVC: UIViewController {
         
         DataService.instance.getAllFoodTrucks()
         tableView.reloadData()
+        
+        searchBar.delegate = self
+        searchBar.returnKeyType = UIReturnKeyType.done
     }
     
     func showLogInVC() {
@@ -41,7 +46,7 @@ class MainVC: UIViewController {
     }
     
     @IBAction func addButtonTapped(sender: UIButton){
-        if AuthService.instance.isAuthenticated == true {
+        if authService.isAuthenticated == true {
             performSegue(withIdentifier: "showAddTruckVC", sender: self)
         } else {
             showLogInVC()
@@ -53,7 +58,11 @@ class MainVC: UIViewController {
         if segue.identifier == "showDetailsVC" {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let destinationViewController = segue.destination as! DetailsVC
-                destinationViewController.selectedFoodTruck = DataService.instance.foodTrucks[indexPath.row]
+                if isSearching {
+                    destinationViewController.selectedFoodTruck = filteredData[indexPath.row]
+                } else {
+                    destinationViewController.selectedFoodTruck = dataService.foodTrucks[indexPath.row]
+                }
             }
         }
     }
@@ -74,19 +83,38 @@ extension MainVC: DataServiceDelegate {
     }
 }
 
-extension MainVC: UITableViewDelegate, UITableViewDataSource {
+extension MainVC: UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isSearching {
+            return filteredData.count
+        }
         return dataService.foodTrucks.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "FoodTruckCell", for: indexPath) as? FoodTruckCell {
-            cell.configureCell(truck: dataService.foodTrucks[indexPath.row])
+            if isSearching {
+                cell.configureCell(truck: filteredData[indexPath.row])
+            } else {
+                cell.configureCell(truck: dataService.foodTrucks[indexPath.row])
+            }
             return cell
         } else {
             return UITableViewCell()
+        }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text == nil || searchBar.text == "" {
+            isSearching = false
+            view.endEditing(true)
+            tableView.reloadData()
+        } else {
+            isSearching = true
+            filteredData = dataService.foodTrucks.filter({$0.name.range(of: searchBar.text!) != nil})
+            tableView.reloadData()
         }
     }
 }
