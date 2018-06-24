@@ -43,7 +43,6 @@ class DataService {
                 let statusCode = (response as! HTTPURLResponse).statusCode
                 print("URL session task succeeded. HTTP \(statusCode)")
                 if let data = data {
-                    
                     self.foodTrucks = FoodTruck.ParseFoodTruckJsonData(data: data)
                     self.delegate?.trucksLoaded()
                 }
@@ -58,34 +57,34 @@ class DataService {
     }
     
     //GET truck by id
-//    func getTruckById(id: String) {
-//        let sessionConfig = URLSessionConfiguration.default
-//        let session = URLSession(configuration: sessionConfig, delegate: nil, delegateQueue: nil)
-//
-//        guard let URL = URL(string: "\(BASE_API_URL)/\(id)") else { return }
-//
-//        var request = URLRequest(url: URL)
-//        request.httpMethod = "GET"
-//
-//        let task = session.dataTask(with: request, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
-//            if error == nil {
-//                //Success
-//                let statusCode = (response as! HTTPURLResponse).statusCode
-//                print("Url session succceeded: \(statusCode)")
-//                //parse json
-//                if let data = data {
-//                    self.selectedTruck = FoodTruck.parseSingleTruckData(data: data)
-//                    self.delegate?.trucksLoaded()
-//                }
-//            } else {
-//                //Failure
-//                print("URL session task failed HTTP: \(error?.localizedDescription)")
-//            }
-//        })
-//        task.resume()
-//        session.finishTasksAndInvalidate()
-//    }
-    
+    func getTruckById(id: String) {
+        let sessionConfig = URLSessionConfiguration.default
+        let session = URLSession(configuration: sessionConfig, delegate: nil, delegateQueue: nil)
+
+        guard let URL = URL(string: "\(BASE_API_URL)/\(id)") else { return }
+
+        var request = URLRequest(url: URL)
+        request.httpMethod = "GET"
+
+        let task = session.dataTask(with: request, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
+            if error == nil {
+                //Success
+                let statusCode = (response as! HTTPURLResponse).statusCode
+                print("Url session succceeded: \(statusCode)")
+                //parse json
+                if let data = data {
+                    self.selectedTruck = FoodTruck.parseSingleTruckData(data: data)
+                    self.delegate?.trucksLoaded()
+                }
+            } else {
+                //Failure
+                print("URL session task failed HTTP: \(error?.localizedDescription)")
+            }
+        })
+        task.resume()
+        session.finishTasksAndInvalidate()
+    }
+
     
     //GET all REVIEWS for a specific foodtruck
     func getAllReviews(for truck: FoodTruck) {
@@ -245,7 +244,7 @@ class DataService {
             "avgcost": avgCost,
             "foodtype": foodtype,
             "geometry": [
-                "coordinates": ["lat": latitude, "long": longitude]
+                "coordinates": [latitude, longitude]
             ]
         ]
         
@@ -280,8 +279,12 @@ class DataService {
                         completion(false)
                         return
                     } else {
-                        self.getAllFoodTrucks()
+//                        self.delegate?.trucksLoaded()
+//                        self.getAllFoodTrucks()
+//                        self.delegate?.trucksLoaded()
+                        
                         completion(true)
+                        
                     }
                 } else {
                     //Failure

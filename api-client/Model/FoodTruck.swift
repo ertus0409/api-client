@@ -32,21 +32,33 @@ class FoodTruck: NSObject, MKAnnotation {
     static func parseSingleTruckData(data: Data) -> FoodTruck! {
         
         var ft = FoodTruck()
-        
+        print("1234")
         do {
             
             let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
             
             if let truck = jsonResult as? Dictionary<String, AnyObject> {
+                print("DATA: ", truck)
                 ft.id = truck["_id"] as! String
                 ft.avgCost = truck["avgcost"] as! Double
                 ft.foodtype = truck["foodtype"] as! String
                 ft.name = truck["name"] as! String
+                print("1234")
+//                let geometry = truck["geometry"] as! Dictionary<String, AnyObject>
+//                ft.geomType = geometry["type"] as! String
+//                let coords = geometry["coordinates"] as! Dictionary<String, AnyObject>
+////                let coords = geometry["coordinates"] as! [Double]
+//                ft.lat = coords["lat"] as! Double
+//                ft.long = coords["long"] as! Double
                 let geometry = truck["geometry"] as! Dictionary<String, AnyObject>
                 ft.geomType = geometry["type"] as! String
-                let coords = geometry["coordinates"] as! Dictionary<String, AnyObject>
-                ft.lat = coords["lat"] as! Double
-                ft.long = coords["long"] as! Double
+                let coords = geometry["coordinates"] as! [Double]
+                ft.lat = coords[0]
+                ft.long = coords[1]
+//                let geometry = truck["geometry"] as! Dictionary<String, AnyObject>
+//                ft.geomType = geometry["type"] as! String
+//
+
                 ft.title = ft.name
                 ft.subtitle = ft.foodtype
                 
@@ -77,9 +89,12 @@ class FoodTruck: NSObject, MKAnnotation {
                     newTruck.name = truck["name"] as! String
                     let geometry = truck["geometry"] as! Dictionary<String, AnyObject>
                     newTruck.geomType = geometry["type"] as! String
-                    let coords = geometry["coordinates"] as! Dictionary<String, AnyObject>
-                    newTruck.lat = coords["lat"] as! Double
-                    newTruck.long = coords["long"] as! Double
+//                    let coords = geometry["coordinates"] as! Dictionary<String, AnyObject>
+//                    newTruck.lat = coords["lat"] as! Double
+//                    newTruck.long = coords["long"] as! Double
+                    let coords = geometry["coordinates"] as! [Double]
+                    newTruck.lat = coords[0]
+                    newTruck.long = coords[1]
                     newTruck.title = newTruck.name
                     newTruck.subtitle = newTruck.foodtype
 //                    print("MyTruck: ",newTruck.title, newTruck.subtitle)

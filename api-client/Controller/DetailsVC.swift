@@ -21,24 +21,32 @@ class DetailsVC: UIViewController {
     @IBOutlet weak var avgCostLbl: UILabel!
     @IBOutlet weak var mapView: MKMapView!
     
-    static let instance = DetailsVC()
+//    static let instance = DetailsVC()
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
                 
+        setTruck()
+
+    }
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        if let truckId = selectedFoodTruck?.id {
+//            DataService.instance.getTruckById(id: truckId)
+//            selectedFoodTruck = DataService.instance.selectedTruck
+//        }
+//    }
+    
+    
+    func setTruck(){
         nameLbl.text = selectedFoodTruck?.name
         foodTypeLbl.text = selectedFoodTruck?.foodtype.capitalized
         avgCostLbl.text = "$\(selectedFoodTruck!.avgCost)"
         
-        
         mapView.addAnnotation(selectedFoodTruck!)
         centerMapOnLocation(CLLocation(latitude: selectedFoodTruck!.lat, longitude: selectedFoodTruck!.long))
-        
-
     }
-    
-    
     
     func centerMapOnLocation(_ location: CLLocation) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(selectedFoodTruck!.coordinate, 1000, 1000)
@@ -138,4 +146,13 @@ class DetailsVC: UIViewController {
 
     
 
+}
+extension DetailsVC: DataServiceDelegate {
+    func trucksLoaded() {
+//        setTruck()
+    }
+    
+    func reviewsLoaded() {
+        
+    }
 }

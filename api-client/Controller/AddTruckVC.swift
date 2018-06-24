@@ -8,7 +8,8 @@
 
 import UIKit
 
-class AddTruckVC: UIViewController {
+class AddTruckVC: UIViewController, UITextFieldDelegate {
+    
     
     //VARIABLES:
     var selectedFoodtruck: FoodTruck?
@@ -28,8 +29,15 @@ class AddTruckVC: UIViewController {
     static var mapLatitude: String?
     static var mapLongitude: String?
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        nameField.delegate = self
+        avgCostField.delegate = self
+        foodTypeField.delegate = self
+        latitudeField.delegate = self
+        longitudeField.delegate = self
 
         if let truck = selectedFoodtruck {
             nameLbl.text = "Update Truck"
@@ -129,10 +137,13 @@ class AddTruckVC: UIViewController {
     
     func dismissViewController() {
         OperationQueue.main.addOperation {
-            _ = self.navigationController?.popViewController(animated: true)
+            let main = self.navigationController?.viewControllers[0] as! MainVC
+            self.navigationController?.popToViewController(main, animated: true)
         }
     }
     
+    
+    //Alert
     func showAlert(with title: String?, message: String?) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: title, style: .default, handler: nil)
@@ -141,6 +152,8 @@ class AddTruckVC: UIViewController {
         
     }
     
+    
+    //Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "MapSelectVC" {
             let destination = segue.destination as! MapSelectVC
@@ -149,5 +162,25 @@ class AddTruckVC: UIViewController {
             }
         }
     }
+    
+    
+    //TextField Return
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 
 }
+
+
+
+
+
+
+
+
+

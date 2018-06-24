@@ -13,7 +13,7 @@ import Foundation
 typealias callback = (_ success: Bool) -> ()
 
 //Base Url
-let BASE_API_URL = "http://localhost:3005/api/v1"
+let BASE_API_URL = "http://appstoredomain.com/api/v1"
 
 //Get all foodtrucks
 let GET_ALL_FT_URL = "\(BASE_API_URL)/foodtruck"

@@ -22,6 +22,10 @@ class MainVC: UIViewController {
     var isSearching = false
     var logInVC: LogInVC!
     
+    static let instance = MainVC()
+    
+    private let refreshControl = UIRefreshControl()
+    
     
 
     override func viewDidLoad() {
@@ -35,14 +39,31 @@ class MainVC: UIViewController {
         DataService.instance.getAllFoodTrucks()
         tableView.reloadData()
         
+        tableView.refreshControl = refreshControl
+        refreshControl.attributedTitle = NSAttributedString(string: "loading...")
+        refreshControl.addTarget(self, action: #selector(MainVC.refreshData), for: UIControlEvents.valueChanged)
+        tableView.addSubview(refreshControl)
+        
         searchBar.delegate = self
         searchBar.returnKeyType = UIReturnKeyType.done
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        dataService.getAllFoodTrucks()
+        tableView.reloadData()
+    }
+    
     
     func showLogInVC() {
         logInVC = LogInVC()
         logInVC.modalPresentationStyle = UIModalPresentationStyle.formSheet
         self.present(logInVC, animated: true, completion: nil)
+    }
+    
+    @objc func refreshData(){
+        dataService.getAllFoodTrucks()
+        refreshControl.endRefreshing()
+        tableView.reloadData()
     }
     
     @IBAction func addButtonTapped(sender: UIButton){
@@ -83,6 +104,7 @@ extension MainVC: DataServiceDelegate {
     }
 }
 
+//TABLEVIEW AND SEARCHBAR
 extension MainVC: UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -106,6 +128,7 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource, UISearchBarDelegat
         }
     }
     
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text == nil || searchBar.text == "" {
             isSearching = false
@@ -117,5 +140,8 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource, UISearchBarDelegat
             tableView.reloadData()
         }
     }
+
+
 }
+
 
